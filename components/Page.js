@@ -72,7 +72,6 @@ const Page = ({ page, doc, scale = 1 }) => {
     if (!context) {
       throw new Error("canvas context가 없음");
     }
-
     return context;
   }, []);
 

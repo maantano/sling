@@ -1,13 +1,13 @@
 "use client";
 import React from "react";
 import ExamItem from "./ExamItem";
-import { usePathname, useRouter } from "next/navigation";
 
-const ExamList = () => {
+const ExamList = ({ examList }) => {
   return (
     <div>
-      <ExamItem id={1} />
-      <ExamItem id={2} />
+      {examList.data.map((item, idx) => (
+        <ExamItem key={idx} data={item} />
+      ))}
     </div>
   );
 };

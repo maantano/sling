@@ -13,13 +13,20 @@ const Img = styled("img")({
   padding: "20px",
 });
 
-export default function ExamItem(props) {
+export default function ExamItem({ data }) {
+  console.log("data ===>", data);
   const router = useRouter();
   const path = usePathname();
 
   const toLink = () => {
     router.push(`/detail/${props.id}`);
   };
+  // "https://storage.googleapis.com/giyoung.appspot.com/images/examTemplates/08OnLDgsDcjgl3AiJcU1/explanation.pdf"
+  // "https://storage.googleapis.com/giyoung.appspot.com/images/examTemplates/1Yc8l0q2V63ynPK1n00c/explanation.pdf"
+  // 1Yc8l0q2V63ynPK1n00c
+  // /api/exam-paper/[id]?participant=지원자ID
+  // https://coding-challenge-web.vercel.app/api/exam-paper/[id]?participant=지원자ID
+  // https://coding-challenge-web.vercel.app/api/exam-paper/1Yc8l0q2V63ynPK1n00c?participant=7e1MDHttqqD8G2UeV0hH
 
   return (
     <Paper
@@ -58,24 +65,24 @@ export default function ExamItem(props) {
           <Grid item xs container direction="column" spacing={2}>
             <Grid item xs>
               <Typography gutterBottom variant="subtitle1" component="div">
-                Standard license
+                제목 : {data.shortTitle}
               </Typography>
               <Typography variant="body2" gutterBottom>
-                Full resolution 1920x1080 • JPEG
+                시험 년도 : {data.executionYear}년
               </Typography>
               <Typography variant="body2" color="text.secondary">
-                ID: 1030114
+                영역 : {data.section.name}, 과목 : {data.subject.name}
               </Typography>
             </Grid>
-            <Grid item>
+            {/* <Grid item>
               <Typography sx={{ cursor: "pointer" }} variant="body2">
                 Remove
               </Typography>
-            </Grid>
+            </Grid> */}
           </Grid>
           <Grid item>
             <Typography variant="subtitle1" component="div">
-              $19.00
+              공개 여부 : {data.isVisible ? "공개" : "비공개"}
             </Typography>
           </Grid>
         </Grid>
